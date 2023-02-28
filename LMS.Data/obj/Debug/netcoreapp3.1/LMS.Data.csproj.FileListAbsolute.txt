@@ -1,0 +1,13 @@
+C:\0000000000000\Projects\LMS\LMS.Data\bin\Debug\netcoreapp3.1\LMS.Data.deps.json
+C:\0000000000000\Projects\LMS\LMS.Data\bin\Debug\netcoreapp3.1\LMS.Data.runtimeconfig.json
+C:\0000000000000\Projects\LMS\LMS.Data\bin\Debug\netcoreapp3.1\LMS.Data.runtimeconfig.dev.json
+C:\0000000000000\Projects\LMS\LMS.Data\bin\Debug\netcoreapp3.1\LMS.Data.dll
+C:\0000000000000\Projects\LMS\LMS.Data\bin\Debug\netcoreapp3.1\LMS.Data.pdb
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.csproj.AssemblyReference.cache
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.AssemblyInfoInputs.cache
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.AssemblyInfo.cs
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.csproj.CoreCompileInputs.cache
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.dll
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.pdb
+C:\0000000000000\Projects\LMS\LMS.Data\obj\Debug\netcoreapp3.1\LMS.Data.genruntimeconfig.cache

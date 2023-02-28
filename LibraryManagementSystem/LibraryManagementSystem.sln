@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.Web", "LMS.Web.csproj", "{188D0345-3608-4F9B-9913-26977F71FE60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.Data", "..\LMS.Data\LMS.Data.csproj", "{DBC21311-6A45-4035-8E93-5ABA389A3A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.Service", "..\LMS.Service\LMS.Service.csproj", "{3CCAA60E-9A5F-4290-AB44-EE70726EC785}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{188D0345-3608-4F9B-9913-26977F71FE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188D0345-3608-4F9B-9913-26977F71FE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188D0345-3608-4F9B-9913-26977F71FE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188D0345-3608-4F9B-9913-26977F71FE60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBC21311-6A45-4035-8E93-5ABA389A3A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBC21311-6A45-4035-8E93-5ABA389A3A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBC21311-6A45-4035-8E93-5ABA389A3A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBC21311-6A45-4035-8E93-5ABA389A3A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCAA60E-9A5F-4290-AB44-EE70726EC785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCAA60E-9A5F-4290-AB44-EE70726EC785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCAA60E-9A5F-4290-AB44-EE70726EC785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCAA60E-9A5F-4290-AB44-EE70726EC785}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6C46961-4B8A-448B-B9EF-5124BEE0DCB0}
+	EndGlobalSection
+EndGlobal
