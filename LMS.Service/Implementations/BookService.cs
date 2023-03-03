@@ -5,6 +5,7 @@ using LMS.Service.Interfaces;
 using LMS.Service.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,8 @@ namespace LMS.Service.Implementations
         public async Task<List<ViewBookVM>> GetAllBook(int pageNo, int rowCount)
         { 
             List<Book> bookList = await _bookRepo.GetAllBooks(pageNo, rowCount);
-            List<ViewBookVM> resultBookList = _mapper.Map<List<ViewBookVM>>(bookList);
+            //List<ViewBookVM> resultBookList = _mapper.Map<List<ViewBookVM>>(bookList);
+            List<ViewBookVM> resultBookList = bookList.Select(item => _mapper.Map<ViewBookVM>(item)).ToList();
             return resultBookList;
         }
         
