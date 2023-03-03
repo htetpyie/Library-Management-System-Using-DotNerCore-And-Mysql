@@ -18,7 +18,7 @@ namespace LMS.Service.Repository
         }
 
         // Retrieve All
-        public async Task<List<Book>> GetAllBooks(int pageNo, int rowCount)
+        public async Task<List<BookDM>> GetAllBooks(int pageNo, int rowCount)
         {
             int skip = (pageNo - 1) * rowCount;
             var list = await _context.Book.AsNoTracking()
@@ -30,7 +30,7 @@ namespace LMS.Service.Repository
         }
 
         // Duplicate Method
-        public async Task<bool> IsDuplicate(Book book)
+        public async Task<bool> IsDuplicate(BookDM book)
         {
             bool isDuplicate;
             if (book.Id > 0)
@@ -51,9 +51,9 @@ namespace LMS.Service.Repository
         }
 
         // Create
-        public async Task<bool> SaveBook(Book bookData, int loginUserId)
+        public async Task<bool> SaveBook(BookDM bookData, int loginUserId)
         {
-            Book bookModel = new Book();
+            BookDM bookModel = new BookDM();
 
             bookModel.CreatedBy = loginUserId;
             bookModel.CreatedDate = DateTime.Now;
@@ -71,16 +71,16 @@ namespace LMS.Service.Repository
         }
 
         // Retrieve By Id
-        public async Task<Book> GetBookById(int bookId)
+        public async Task<BookDM> GetBookById(int bookId)
         {
-            Book book = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookId);
+            BookDM book = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookId);
             return book;
         }
 
         // Update
-        public async Task<bool> UpdateBook(Book bookData, int loginUserId)
+        public async Task<bool> UpdateBook(BookDM bookData, int loginUserId)
         {
-            Book bookModel = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookData.Id);
+            BookDM bookModel = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookData.Id);
             if (bookModel == null) return false;
 
             bookModel.UpdatedBy = loginUserId;
@@ -101,7 +101,7 @@ namespace LMS.Service.Repository
         // Delete
         public async Task<bool> DeleteBook(int bookId, int loginUserId)
         {
-            Book bookModel = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookId);
+            BookDM bookModel = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookId);
             if (bookModel == null) return false;
 
             bookModel.UpdatedBy = loginUserId;

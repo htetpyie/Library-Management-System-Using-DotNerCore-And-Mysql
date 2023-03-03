@@ -8,11 +8,11 @@ namespace LMS.Service.Interfaces
 {
     public interface IBookService
     {
-        Task<List<ViewBookVM>> GetAllBook(int pageNo, int rowCount);
-        Task<bool> IsDuplicate(ViewBookVM bookVM);
-        Task<bool> SaveBook(ViewBookVM bookVM, int loginUserId);
-        Task<ViewBookVM> GetBookById(int bookId);
-        Task<bool> UpdateBook(ViewBookVM bookVm, int loginUserId);
+        Task<List<BookVM>> GetAllBook(int pageNo, int rowCount);
+        Task<bool> IsDuplicate(BookVM bookVM);
+        Task<bool> SaveBook(BookVM bookVM, int loginUserId);
+        Task<BookVM> GetBookById(int bookId);
+        Task<bool> UpdateBook(BookVM bookVm, int loginUserId);
         Task<bool> DeleteBook(int bookId, int loginUserId);
     }
 }

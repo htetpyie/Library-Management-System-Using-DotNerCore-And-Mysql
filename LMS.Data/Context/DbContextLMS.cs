@@ -11,7 +11,7 @@ namespace LMS.Data.Context
         public DbContextLMS( DbContextOptions<DbContextLMS> options) : base(options)
         {
         }
-        public DbSet<Book> Book { get; set; }
+        public DbSet<BookDM> Book { get; set; }
         public DbSet<Member> Member { get; set; }
         public DbSet<Loan> Loan { get; set; }
     }

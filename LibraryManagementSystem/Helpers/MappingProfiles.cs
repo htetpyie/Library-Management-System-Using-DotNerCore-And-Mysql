@@ -11,8 +11,8 @@ namespace LMS.Web.Helpers
     {
         public MappingProfiles()
         {
-            CreateMap<ViewBookVM, Book>();
-            CreateMap<Book,ViewBookVM>();
+            CreateMap<BookVM, BookDM>();
+            CreateMap<BookDM,BookVM>();
             //CreateMap<List<ViewBookVM>, List<Book>>();
             CreateMap<Member, ViewMemberVM>();
             CreateMap<ViewMemberVM, Member>();

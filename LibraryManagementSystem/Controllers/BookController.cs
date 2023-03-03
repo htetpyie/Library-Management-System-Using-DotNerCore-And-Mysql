@@ -35,7 +35,7 @@ namespace LMS.Web.Controllers
 
         // Save Book
         [HttpPost]
-        public async Task<IActionResult> SaveBook(ViewBookVM bookVM)
+        public async Task<IActionResult> SaveBook(BookVM bookVM)
         {
             int loginUserId = 1;
 
@@ -59,7 +59,7 @@ namespace LMS.Web.Controllers
         // View Book
         public async Task<IActionResult> ViewBook(int bookId)
         {
-            ViewBookVM bookVm = await _iBookService.GetBookById(bookId);
+            BookVM bookVm = await _iBookService.GetBookById(bookId);
             if (bookVm == null)
             {
                 TempData[Message] = _message.BookNotFound;
@@ -72,7 +72,7 @@ namespace LMS.Web.Controllers
         public async Task<IActionResult> EditBook(int bookId)
         {
 
-            ViewBookVM bookVm = await _iBookService.GetBookById(bookId);
+            BookVM bookVm = await _iBookService.GetBookById(bookId);
             if (bookVm == null)
             {
                 TempData[Message] = _message.BookNotFound;
@@ -83,7 +83,7 @@ namespace LMS.Web.Controllers
 
         // Update Book
         [HttpPost]
-        public async Task<IActionResult> UpdateBook(ViewBookVM bookVm)
+        public async Task<IActionResult> UpdateBook(BookVM bookVm)
         {
             int loginUserId = 1;
             if (bookVm == null) return BadRequest();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LMS.Data.ViewModels
 {
-    public class ViewBookVM
+    public class BookVM
     {
         public int Id { get; set; }
         
