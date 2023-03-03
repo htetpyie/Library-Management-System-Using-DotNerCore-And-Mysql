@@ -1,0 +1,56 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h2 class="jaoas-label">Book</h2>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item sub-label">Book</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <a asp-action="CreateBook" asp-controller="Book">Create Book</a>
+                    </div>
+                    <div class="card-body">
+                        <table id="book-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Published</th>
+                                    <th>PublishedDate</th>
+                                    <th>ISBN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/Book/book.js"></script>
+    <script>
+        $(document).ready(function () {
+            let messageTitle =  @TempData["MessageTitle"];
+            let message = @TempData["Message"];
+            showModal("#modal", messageTitle, message);
+    })
+
+    </script>
+}

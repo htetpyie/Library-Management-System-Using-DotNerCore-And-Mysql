@@ -17,12 +17,41 @@ namespace LMS.Service.Repository
             _context = context;
         }
 
-        public async Task<List<Book>> GetAllBooks()
+        // Retrieve All
+        public async Task<List<Book>> GetAllBooks(int pageNo, int rowCount)
         {
-            return await _context.Book.Where(b => b.IsDelete == false).ToListAsync();
+            int skip = (pageNo - 1) * rowCount;
+            var list = await _context.Book.AsNoTracking()
+                                        .Where(b => b.IsDelete == false)
+                                        .Skip(skip)
+                                        .Take(rowCount)
+                                        .ToListAsync();
+            return list;
         }
 
-        public int SaveBook(Book bookData, int loginUserId)
+        // Duplicate Method
+        public async Task<bool> IsDuplicate(Book book)
+        {
+            bool isDuplicate;
+            if (book.Id > 0)
+            {
+                isDuplicate = await _context.Book.AnyAsync(b => b.IsDelete == false && b.Id != book.Id
+                                   && b.Title.ToLower().Trim() == book.Title.ToLower().Trim()
+                                   && b.Author.ToLower().Trim() == book.Author.ToLower().Trim());
+            }
+            else
+            {
+                isDuplicate = await _context.Book.AnyAsync(b => b.IsDelete == false
+                                    && b.Title.ToLower().Trim() == book.Title.ToLower().Trim()
+                                    && b.Author.ToLower().Trim() == book.Author.ToLower().Trim());
+            }
+
+            return isDuplicate;
+
+        }
+
+        // Create
+        public async Task<bool> SaveBook(Book bookData, int loginUserId)
         {
             Book bookModel = new Book();
 
@@ -33,20 +62,26 @@ namespace LMS.Service.Repository
             bookModel.Publisher = bookData.Publisher;
             bookModel.PublishedDate = bookData.PublishedDate;
             bookModel.ISBN = bookData.ISBN;
+            bookModel.Description = bookData.Description;
 
-            _context.Add(bookModel);
-            return _context.SaveChanges();
+            await _context.AddAsync(bookModel);
+
+            int result = _context.SaveChanges();
+            return result > 0;
         }
 
-        public Book FindBookById(int bookId)
+        // Retrieve By Id
+        public async Task<Book> GetBookById(int bookId)
         {
-            return _context.Book.Where(b => b.IsDelete == false && b.Id = bookId).FirstOrDefault();
+            Book book = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookId);
+            return book;
         }
 
-        public int UpdateBook(Book bookData, int loginUserId)
+        // Update
+        public async Task<bool> UpdateBook(Book bookData, int loginUserId)
         {
-            Book bookModel = _context.Book.Where(b => b.IsDelete == false && b.Id == bookData.Id).FirstOrDefault();
-            if (bookModel == null) return -1;
+            Book bookModel = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookData.Id);
+            if (bookModel == null) return false;
 
             bookModel.UpdatedBy = loginUserId;
             bookModel.UpdatedDate = DateTime.Now;
@@ -55,22 +90,28 @@ namespace LMS.Service.Repository
             bookModel.Publisher = bookData.Publisher;
             bookModel.PublishedDate = bookData.PublishedDate;
             bookModel.ISBN = bookData.ISBN;
+            bookModel.Description = bookData.Description;
 
+            _context.Entry(bookModel).State = EntityState.Modified;
             _context.Update(bookModel);
-            return _context.SaveChanges();
+            int result = await _context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public int DeleteBook(int bookId, int loginUserId)
+        // Delete
+        public async Task<bool> DeleteBook(int bookId, int loginUserId)
         {
-            Book bookModel = _context.Book.Where(b => b.IsDelete == false && b.Id == bookId).FirstOrDefault();
-            if (bookModel == null) return -1;
+            Book bookModel = await _context.Book.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == bookId);
+            if (bookModel == null) return false;
 
             bookModel.UpdatedBy = loginUserId;
             bookModel.UpdatedDate = DateTime.Now;
             bookModel.IsDelete = true;
 
+            _context.Entry(bookModel).State = EntityState.Deleted;
             _context.Update(bookModel);
-            return _context.SaveChanges();
+            int result = await _context.SaveChangesAsync();
+            return result > 0;
         }
     }
 }

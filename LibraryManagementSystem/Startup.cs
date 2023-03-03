@@ -1,4 +1,7 @@
 using LMS.Data.Context;
+using LMS.Service.Implementations;
+using LMS.Service.Interfaces;
+using LMS.Service.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,10 +29,19 @@ namespace LibraryManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DBConnection");
-            services.AddDbContextPool<DbContextLMS>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
 
             services.AddControllers();
             services.AddControllersWithViews();
+            
+            services.AddDbContextPool<DbContextLMS>(options => 
+                        options.UseMySql( mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)) 
+                        );
+            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //to use mapper
+            services.AddScoped<BookRepository>();
+            services.AddScoped<MemberRepository>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IMemberService, MemberService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +68,7 @@ namespace LibraryManagementSystem
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Book}/{action=Index}/{id?}");
             });
         }
     }
