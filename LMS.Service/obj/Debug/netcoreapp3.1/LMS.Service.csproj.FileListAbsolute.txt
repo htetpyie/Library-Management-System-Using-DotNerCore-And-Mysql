@@ -11,3 +11,16 @@ C:\0000000000000\Projects\LMS\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.cs
 C:\0000000000000\Projects\LMS\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.csproj.CopyComplete
 C:\0000000000000\Projects\LMS\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.dll
 C:\0000000000000\Projects\LMS\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.pdb
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\bin\Debug\netcoreapp3.1\LMS.Service.deps.json
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\bin\Debug\netcoreapp3.1\LMS.Service.dll
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\bin\Debug\netcoreapp3.1\LMS.Service.pdb
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\bin\Debug\netcoreapp3.1\LMS.Data.dll
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\bin\Debug\netcoreapp3.1\LMS.Data.pdb
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.csproj.AssemblyReference.cache
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.AssemblyInfoInputs.cache
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.AssemblyInfo.cs
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.csproj.CoreCompileInputs.cache
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.csproj.CopyComplete
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.dll
+D:\slh\proj\Library-Management-System-Using-DotNerCore-And-Mysql\LMS.Service\obj\Debug\netcoreapp3.1\LMS.Service.pdb
