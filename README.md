@@ -31,7 +31,6 @@ CREATE TABLE Loans (
    CONSTRAINT FK_Loans_Members FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
 );
 
-``` Data
 
 INSERT INTO books (title, author, publisher, publishDate, isbn) VALUES ('To Kill a Mockingbird', 'Harper Lee', 'J. B. Lippincott & Co.', '1960-07-11', '9780446310789');
 INSERT INTO books (title, author, publisher, publishDate, isbn) VALUES ('1984', 'George Orwell', 'Secker and Warburg', '1949-06-08', '9780451524935');
