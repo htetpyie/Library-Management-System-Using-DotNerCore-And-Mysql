@@ -41,10 +41,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label asp-for="PublishedDate" class="control-label"></label>
+                                        <label asp-for="PublishDate" class="control-label"></label>
                                         <span style="color: red; font-size: 20px;">&nbsp;*</span>
-                                        <input type="text" class="form-control date-picker" asp-for="PublishedDate" />
-                                        <span asp-validation-for="PublishedDate" class="text-danger"></span>
+                                        <input type="text" class="form-control date-picker" asp-for="PublishDate" />
+                                        <span asp-validation-for="PublishDate" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -57,18 +57,12 @@
                                         <span asp-validation-for="ISBN" class="text-danger"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label asp-for="Description" class="control-label"></label>
-                                        <textarea type="text" class="form-control" asp-for="Description" ></textarea>
-                                        <span asp-validation-for="Description" class="text-danger"></span>
-                                    </div>
-                                </div>
+                              
                             </div>
                             <div class="row">
                                 <div class="col"></div>
                                 <div class="col">
-                                    <button type="button" class="btn btn-danger ms-auto me-3">Cancel</button>
+                                    <a asp-action="Index" class="btn btn-danger ms-auto me-3">Cancel</a>
                                     <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>

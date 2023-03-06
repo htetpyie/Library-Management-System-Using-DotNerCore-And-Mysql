@@ -6,11 +6,11 @@ using System.Text;
 
 namespace LMS.Data.Models
 {
-    [Table("Book")]
-    public class BookDM : BaseModel
+    [Table("Books")]
+    public class BookDM 
     {
         [Key]
-        public int Id { get; set; }
+        public int BookId { get; set; }
 
         [StringLength(100)]
         public string Title { get; set; }
@@ -21,12 +21,10 @@ namespace LMS.Data.Models
         [StringLength(100)]
         public string Publisher { get; set; }
 
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishDate { get; set; }
 
         [StringLength(20)]
         public string ISBN { get; set; }
-
-        [StringLength(200)]
-        public string Description { get; set; }
+       
     }
 }

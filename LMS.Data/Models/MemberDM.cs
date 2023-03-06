@@ -6,11 +6,11 @@ using System.Text;
 
 namespace LMS.Data.Models
 {
-    [Table("Member")]
-    public class MemberDM : BaseModel
+    [Table("Members")]
+    public class MemberDM
     {
         [Key]
-        public int Id { get; set; }
+        public int MemberId { get; set; }
 
         [StringLength(50)]
         public string FirstName { get; set; }

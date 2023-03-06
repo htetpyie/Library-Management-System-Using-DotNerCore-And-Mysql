@@ -9,15 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LMS.Service.Implementations {
-    public class BookService : IBookService {
+namespace LMS.Service.Implementations
+{
+    public class BookService : IBookService
+    {
         #region Fields
         private readonly BookRepository _bookRepo;
         private readonly IMapper _mapper;
         #endregion
 
         #region Constructor
-        public BookService(BookRepository bookRepo, IMapper mapper) {
+        public BookService(BookRepository bookRepo, IMapper mapper)
+        {
             _bookRepo = bookRepo;
             _mapper = mapper;
         }
@@ -25,7 +28,8 @@ namespace LMS.Service.Implementations {
 
         #region Bussiness Logic Layer
         // Read , Retrieve All
-        public async Task<List<BookVM>> GetAllBook(string sortColumn, string sortColumnDirection, string searchValue , int skip , int rowCount) {
+        public async Task<List<BookVM>> GetAllBook(string sortColumn, string sortColumnDirection, string searchValue, int skip, int rowCount)
+        {
 
             List<BookDM> bookList = await _bookRepo.GetAllBooks(skip, rowCount);
 
@@ -41,16 +45,17 @@ namespace LMS.Service.Implementations {
             //    Title = item.Title,
             //}).ToList();
             List<BookVM> resultBookList = new List<BookVM>();
-            foreach (var item in bookList) {
-                BookVM bookVM = new BookVM {
-                    Id = item.Id,
+            foreach (var item in bookList)
+            {
+                BookVM bookVM = new BookVM
+                {
+                    BookId = item.BookId,
                     Author = item.Author,
-                    Description = item.Description,
                     ISBN = item.ISBN,
-                    PublishedDate = item.PublishedDate,
+                    PublishDate = item.PublishDate,
                     Publisher = item.Publisher,
                     Title = item.Title,
-                    PublishedDateString = item.PublishedDate.ToString("dd-MMMM-yyyy"),
+                    PublishedDateString = item.PublishDate.ToString("dd-MMMM-yyyy"),
                 };
                 resultBookList.Add(bookVM);
             }
@@ -58,44 +63,49 @@ namespace LMS.Service.Implementations {
         }
 
         // Check Duplicate
-        public async Task<bool> IsDuplicate(BookVM bookVM) {
+        public async Task<bool> IsDuplicate(BookVM bookVM)
+        {
             if (bookVM == null) return false;
             bool isDuplicate = await _bookRepo.IsDuplicate(_mapper.Map<BookDM>(bookVM));
             return isDuplicate;
         }
 
         // Create
-        public async Task<bool> SaveBook(BookVM bookVM, int loginUserId) {
+        public async Task<bool> SaveBook(BookVM bookVM, int loginUserId)
+        {
             BookDM book = _mapper.Map<BookDM>(bookVM);
             bool isSaved = await _bookRepo.SaveBook(book, loginUserId);
             return isSaved;
         }
 
         // Retrieve By Id
-        public async Task<BookVM> GetBookById(int bookId) {
+        public async Task<BookVM> GetBookById(int bookId)
+        {
             BookDM book = await _bookRepo.GetBookById(bookId);
             BookVM bookVM = _mapper.Map<BookVM>(book);
             return bookVM;
         }
 
         // Update Book
-        public async Task<bool> UpdateBook(BookVM bookVm, int loginUserId) {
+        public async Task<bool> UpdateBook(BookVM bookVm, int loginUserId)
+        {
             BookDM book = _mapper.Map<BookDM>(bookVm);
             bool isUpdated = await _bookRepo.UpdateBook(book, loginUserId);
             return isUpdated;
         }
 
         //Delete Book
-        public async Task<bool> DeleteBook(int bookId, int loginUserId) {
+        public async Task<bool> DeleteBook(int bookId, int loginUserId)
+        {
             bool isDeleted = await _bookRepo.DeleteBook(bookId, loginUserId);
             return isDeleted;
         }
-       
+
         // Search Book 
         public async Task<List<BookVM>> GetBookByFilter(string filter)
         {
             List<BookDM> bookList = await _bookRepo.GetBookByFilter(filter);
-            List<BookVM> bookVMList =  bookList.Select(item => _mapper.Map<BookVM>(item) ).ToList();
+            List<BookVM> bookVMList = bookList.Select(item => _mapper.Map<BookVM>(item)).ToList();
             return bookVMList;
         }
         #endregion

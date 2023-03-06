@@ -6,11 +6,11 @@ using System.Text;
 
 namespace LMS.Data.Models
 {
-    [Table("Loan")]
+    [Table("Loans")]
     public class LoanDM
     {
         [Key]
-        public int Id { get; set; }
+        public int LoanId { get; set; }
         public int BookId { get; set; }
         public int MemberId { get; set; }
         public DateTime LoanDate { get; set; }

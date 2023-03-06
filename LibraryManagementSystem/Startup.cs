@@ -30,7 +30,7 @@ namespace LibraryManagementSystem {
             //services.AddRazorPages()
             //        .AddRazorRuntimeCompilation();
 
-            services.AddDbContextPool<DbContextLMS>(options => options.UseSqlServer(mySqlConnectionStr));
+            services.AddDbContextPool<LMSDbContext>(options => options.UseSqlServer(mySqlConnectionStr));
             //services.AddDbContextPool<DbContextLMS>(options => 
             //            options.UseMySql( mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)) 
             //            );

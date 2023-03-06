@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace LMS.Data.Context {
-    public class DbContextLMS : DbContext {
-        public DbContextLMS(DbContextOptions<DbContextLMS> options) : base(options) {
+    public class LMSDbContext : DbContext {
+        public LMSDbContext(DbContextOptions<LMSDbContext> options) : base(options) {
         }
         public DbSet<BookDM> Book { get; set; }
         public DbSet<MemberDM> Member { get; set; }

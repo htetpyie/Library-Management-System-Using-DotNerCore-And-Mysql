@@ -50,8 +50,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label asp-for="PublishedDate" class="control-label"></label>
-                                    <input type="text" class="form-control date-picker" value="@Model.PublishedDate.ToString("dd-MMMM-yyyy")" readonly />
+                                    <label asp-for="PublishDate" class="control-label"></label>
+                                    <input type="text" class="form-control date-picker" value="@Model.PublishDate.ToString("dd-MMMM-yyyy")" readonly />
                                 </div>
                             </div>
                         </div>
@@ -62,12 +62,7 @@
                                     <input type="text" class="form-control" value="@Model.ISBN" readonly />
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label asp-for="Description" class="control-label"></label>
-                                    <textarea type="text" class="form-control" readonly>@Model.Description</textarea>
-                                </div>
-                            </div>
+                          
                         </div>
                         <div class="row">
                             <a asp-action="Index" class="ms-3  text-decoration-none" asp-controller="Book"><< Back</a>

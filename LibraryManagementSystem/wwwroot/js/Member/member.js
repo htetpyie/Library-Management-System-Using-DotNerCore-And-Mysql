@@ -44,9 +44,9 @@
                                     <i class="fas fa-cog" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu" id="actionBtn" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/Member/EditMember/${full.id}">Edit</a>
-                                    <a class="dropdown-item" href="/Member/ViewMember/${full.id}">View</a>
-                                    <a class="dropdown-item" href="#" onclick="showDeleteModal(${full.id})">Delete</a>
+                                    <a class="dropdown-item" href="/Member/EditMember/${full.memberId}">Edit</a>
+                                    <a class="dropdown-item" href="/Member/ViewMember/${full.memberId}">View</a>
+                                    <a class="dropdown-item" href="#" onclick="showDeleteModal(${full.memberId})">Delete</a>
                                 </div>
                             </div>`
                 },

@@ -9,11 +9,10 @@ namespace LMS.Service {
     public static class ChangeModel {
         public static BookVM Change(this BookDM reqModel) {
             BookVM model = new BookVM {
-                Id = reqModel.Id,
+                BookId = reqModel.BookId,
                 Author = reqModel.Author,
-                Description = reqModel.Description,
                 ISBN = reqModel.ISBN,
-                PublishedDate = reqModel.PublishedDate,
+                PublishDate = reqModel.PublishDate,
                 Publisher = reqModel.Publisher,
                 Title = reqModel.Title,
             };

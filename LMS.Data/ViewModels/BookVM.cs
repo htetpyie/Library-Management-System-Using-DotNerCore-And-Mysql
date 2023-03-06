@@ -7,7 +7,7 @@ namespace LMS.Data.ViewModels
 {
     public class BookVM
     {
-        public int Id { get; set; }
+        public int BookId { get; set; }
         
         [Required]
         public string Title { get; set; }
@@ -20,13 +20,12 @@ namespace LMS.Data.ViewModels
 
         [Required]
         [Display(Name = "Published Date")]
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishDate { get; set; }
         public String PublishedDateString { get; set; }
 
         [Required]
         [Display(Name ="ISBN Number")]
         public string ISBN { get; set; }
 
-        public string Description { get; set; }
     }
 }

@@ -19,8 +19,6 @@
         </div>
 
 
-
-
         <!--#Region Modal-->
         <div class="modal fade w-100" id="filterBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -70,10 +68,12 @@
 @section scripts {
     <script>
     $('#searchBtn').click(function (e) {
+
         e.preventDefault();
         let _reqModel = {
             Filter: $('#searchText').val(),
         }
+
         $.ajax({
             type: "POST",
             url: '@Url.ActionLink("Search","Book")',
@@ -84,7 +84,7 @@
                 $.each(data.result,function (index, item) {
                     trList += `<tr>
                                     <td>${index + 1}</td>
-                                    <td>${item.id}</td>
+                                    <td>${item.bookId}</td>
                                     <td>${item.title}</td>
                                     <td>${item.author}</td>
                                     <td>${item.publisher}</td>
@@ -95,6 +95,19 @@
             }
 
         })
+
+
+        //$('[data-toggle="datepicker"]').datepicker({
+        //    autoHide: true,
+        //    format: 'dd-mm-yyyy'
+        //});
+        //$('#btnClick').click(function () {
+        //    var data = $('[data-toggle="datepicker"]').val();
+        //    var str = data.split('-');
+        //    var data1 = `${str[2]}-${str[1]}-${str[0]}`;
+        //    var pData = $('#pId').html();
+        //    console.log({ data, pData, data1 });
+        //})
     })
     </script>
 }

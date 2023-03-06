@@ -31,7 +31,7 @@ $(document).ready(() => {
             },
             {
                 "data": "publishedDateString",
-                "name": "publishedDate",
+                "name": "PublishDate",
             },
             {
                 "data": "isbn",
@@ -46,9 +46,9 @@ $(document).ready(() => {
                                     <i class="fas fa-cog" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu" id="actionBtn" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/Book/EditBook/${full.id}">Edit</a>
-                                    <a class="dropdown-item" href="/Book/ViewBook/${full.id}">View</a>
-                                    <a class="dropdown-item" href="#" onclick="showDeleteModal(${full.id})">Delete</a>
+                                    <a class="dropdown-item" href="/Book/EditBook/${full.bookId}">Edit</a>
+                                    <a class="dropdown-item" href="/Book/ViewBook/${full.bookId}">View</a>
+                                    <a class="dropdown-item" href="#" onclick="showDeleteModal(${full.bookId})">Delete</a>
                                 </div>
                             </div>`
                 },

@@ -7,7 +7,7 @@ namespace LMS.Data.ViewModels
 {
     public class MemberVM
     {
-        public int Id { get; set; }      
+        public int MemberId { get; set; }      
         [Required]
         public string FirstName { get; set; }
         [Required]

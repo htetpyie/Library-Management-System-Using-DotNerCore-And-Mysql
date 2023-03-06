@@ -11,8 +11,8 @@ namespace LMS.Service.Repository
 {
     public class MemberRepository
     {
-        private readonly DbContextLMS _context;
-        public MemberRepository(DbContextLMS context)
+        private readonly LMSDbContext _context;
+        public MemberRepository(LMSDbContext context)
         {
             _context = context;
         }
@@ -22,8 +22,7 @@ namespace LMS.Service.Repository
             //int skip = (pageNo - 1) * rowCount;
             int skip = pageNo;
             List<MemberDM> list = await _context.Member
-                                    .AsNoTracking()
-                                    .Where(b => b.IsDelete == false)
+                                    .AsNoTracking()                                  
                                     .Skip(skip)
                                     .Take(rowCount)
                                     .ToListAsync();
@@ -33,9 +32,7 @@ namespace LMS.Service.Repository
         public async Task<bool> SaveMember(MemberDM memberData, int loginUserId)
         {
             MemberDM memberModel = new MemberDM();
-
-            memberModel.CreatedBy = loginUserId;
-            memberModel.CreatedDate = DateTime.Now;
+                     
             memberModel.FirstName = memberData.FirstName;
             memberModel.LastName = memberData.LastName;
             memberModel.Email = memberData.Email;
@@ -49,17 +46,15 @@ namespace LMS.Service.Repository
 
         public async Task<MemberDM> GetMemberById(int memberId)
         {
-            var member = await _context.Member.FirstOrDefaultAsync(m => m.IsDelete == false && m.Id == memberId);
+            var member = await _context.Member.FirstOrDefaultAsync(m => m.MemberId == memberId);
             return member;
         }
 
         public async Task<bool> UpdateMember(MemberDM memberData, int loginUserId)
         {
-            MemberDM memberModel = await _context.Member.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == memberData.Id);
+            MemberDM memberModel = await _context.Member.FirstOrDefaultAsync(b => b.MemberId == memberData.MemberId);
             if (memberModel == null) return false;
-
-            memberModel.UpdatedBy = loginUserId;
-            memberModel.UpdatedDate = DateTime.Now;
+                     
             memberModel.FirstName = memberData.FirstName;
             memberModel.LastName = memberData.LastName;
             memberModel.Email = memberData.Email;
@@ -74,12 +69,8 @@ namespace LMS.Service.Repository
 
         public async Task<bool> DeleteMember(int memberId, int loginUserId)
         {
-            MemberDM memberModel = await _context.Member.FirstOrDefaultAsync(m => m.IsDelete == false && m.Id == memberId);
+            MemberDM memberModel = await _context.Member.FirstOrDefaultAsync(m => m.MemberId == memberId);
             if (memberModel == null) return false;
-
-            memberModel.UpdatedBy = loginUserId;
-            memberModel.UpdatedDate = DateTime.Now;
-            memberModel.IsDelete = true;
 
             _context.Entry(memberModel).State = EntityState.Deleted;
             _context.Update(memberModel);
@@ -90,15 +81,16 @@ namespace LMS.Service.Repository
         public async Task<bool> IsDuplicate(MemberDM member)
         {
             bool isDuplicate;
-            if (member.Id > 0)
+            if (member.MemberId > 0)
             {
-                isDuplicate = await _context.Member.AnyAsync(m => m.IsDelete == false && m.Id != member.Id
+                isDuplicate = await _context.Member.AnyAsync(m => m.MemberId != member.MemberId
                                 && (m.Email.ToLower().Trim() == member.Email.ToLower().Trim() || m.Phone.Trim() == member.Phone.Trim()));
             }
             else
             {
-                isDuplicate = await _context.Member.AnyAsync(m => m.IsDelete == false
-                                                && (m.Email.ToLower().Trim() == member.Email.ToLower().Trim() || m.Phone.Trim() == member.Phone.Trim()));
+                isDuplicate = await _context.Member.AnyAsync(m =>  
+                                                             m.Email.ToLower().Trim() == member.Email.ToLower().Trim() || 
+                                                             m.Phone.Trim() == member.Phone.Trim());
             }
             return isDuplicate;
         }
