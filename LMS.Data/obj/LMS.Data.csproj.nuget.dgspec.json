@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\0000000000000\\Projects\\LMS\\LMS.Data\\LMS.Data.csproj": {}
+    "D:\\slh\\proj\\Library-Management-System-Using-DotNerCore-And-Mysql\\LMS.Data\\LMS.Data.csproj": {}
   },
   "projects": {
-    "C:\\0000000000000\\Projects\\LMS\\LMS.Data\\LMS.Data.csproj": {
+    "D:\\slh\\proj\\Library-Management-System-Using-DotNerCore-And-Mysql\\LMS.Data\\LMS.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\0000000000000\\Projects\\LMS\\LMS.Data\\LMS.Data.csproj",
+        "projectUniqueName": "D:\\slh\\proj\\Library-Management-System-Using-DotNerCore-And-Mysql\\LMS.Data\\LMS.Data.csproj",
         "projectName": "LMS.Data",
-        "projectPath": "C:\\0000000000000\\Projects\\LMS\\LMS.Data\\LMS.Data.csproj",
-        "packagesPath": "C:\\Users\\htetp\\.nuget\\packages\\",
-        "outputPath": "C:\\0000000000000\\Projects\\LMS\\LMS.Data\\obj\\",
+        "projectPath": "D:\\slh\\proj\\Library-Management-System-Using-DotNerCore-And-Mysql\\LMS.Data\\LMS.Data.csproj",
+        "packagesPath": "C:\\Users\\ACEBNK101\\.nuget\\packages\\",
+        "outputPath": "D:\\slh\\proj\\Library-Management-System-Using-DotNerCore-And-Mysql\\LMS.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\htetp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ACEBNK101\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,7 +65,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -74,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
