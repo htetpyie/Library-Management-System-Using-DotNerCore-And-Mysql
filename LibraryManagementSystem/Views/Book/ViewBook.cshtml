@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "View Book";
+}
+@model BookVM
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h2 class="jaoas-label">Book</h2>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item sub-label"><a asp-action="Index">Book</a></li>
+                    <li class="breadcrumb-item sub-label">View Detail</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Title" class="control-label"></label>
+                                    <input type="text" class="form-control" value="@Model.Title"readonly/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Author" class="control-label"></label>
+                                    <input type="text" class="form-control" asp-for="Author" value="@Model.Author" readonly />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Publisher" class="control-label"></label>
+                                    <input type="text" class="form-control" value="@Model.Publisher" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="PublishedDate" class="control-label"></label>
+                                    <input type="text" class="form-control date-picker" value="@Model.PublishedDate.ToString("dd-MMMM-yyyy")" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ISBN" class="control-label"></label>
+                                    <input type="text" class="form-control" value="@Model.ISBN" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <textarea type="text" class="form-control" readonly>@Model.Description</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a asp-action="Index" class="ms-3  text-decoration-none" asp-controller="Book"><< Back</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

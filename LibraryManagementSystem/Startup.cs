@@ -29,9 +29,11 @@ namespace LibraryManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DBConnection");
-
             services.AddControllers();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            //services.AddRazorPages()
+            //        .AddRazorRuntimeCompilation();
+           
             
             services.AddDbContextPool<DbContextLMS>(options => 
                         options.UseMySql( mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)) 

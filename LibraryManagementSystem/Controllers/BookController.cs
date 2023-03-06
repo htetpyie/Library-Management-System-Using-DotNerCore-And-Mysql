@@ -27,6 +27,53 @@ namespace LMS.Web.Controllers
             return View();
         }
 
+        // Book Data Table
+        [HttpPost]
+        public async Task<IActionResult> BookDataTable()
+        {
+            try
+            {
+
+                var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+
+                // Paging Length 10,20  
+                var length = Request.Form["length"].FirstOrDefault();
+
+                // Skiping number of Rows count  
+                var start = Request.Form["start"].FirstOrDefault();
+
+                // Search Value from (Search box)  
+                var searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+                // Sort Column Name  
+                //var sortColumn = Request.Form["order[0][column]"].FirstOrDefault();
+                var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+
+                // Sort Column Direction ( asc ,desc)  
+                var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+
+                //Paging Size (10,20,50,100)  
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+                int recordsTotal = 0;
+
+                // Getting all User data  
+                var roleList = await _iBookService.GetAllBook(sortColumn, sortColumnDirection, searchValue, skip, pageSize);
+
+                //total number of rows count   
+                recordsTotal = roleList.Count();
+                //Paging   
+                var data = roleList.Skip(skip).Take(pageSize).ToList();
+                //Returning Json Data  
+                return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         // Create Book
         public IActionResult CreateBook()
         {
@@ -55,11 +102,11 @@ namespace LMS.Web.Controllers
                 return RedirectToAction(nameof(CreateBook));
             }
         }
-        
+
         // View Book
-        public async Task<IActionResult> ViewBook(int bookId)
+        public async Task<IActionResult> ViewBook(int id)
         {
-            BookVM bookVm = await _iBookService.GetBookById(bookId);
+            BookVM bookVm = await _iBookService.GetBookById(id);
             if (bookVm == null)
             {
                 TempData[Message] = _message.BookNotFound;
@@ -69,14 +116,14 @@ namespace LMS.Web.Controllers
         }
 
         // Edit Book
-        public async Task<IActionResult> EditBook(int bookId)
+        public async Task<IActionResult> EditBook(int Id)
         {
 
-            BookVM bookVm = await _iBookService.GetBookById(bookId);
+            BookVM bookVm = await _iBookService.GetBookById(Id);
             if (bookVm == null)
             {
                 TempData[Message] = _message.BookNotFound;
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(bookVm);
         }
@@ -103,15 +150,16 @@ namespace LMS.Web.Controllers
                 return RedirectToAction(nameof(EditBook));
             }
         }
-    
+
         // Delete Book
-        public async Task<IActionResult> DeleteBook(int bookId)
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteBook(int Id)
         {
             int loginUserId = 1;
-            bool isDeleted = await _iBookService.DeleteBook(bookId, loginUserId);
+            bool isDeleted = await _iBookService.DeleteBook(Id, loginUserId);
             if (isDeleted)
             {
-                TempData[Message] = _message.BookDeleteSuccess;                
+                TempData[Message] = _message.BookDeleteSuccess;
             }
             else
             {
@@ -119,5 +167,18 @@ namespace LMS.Web.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+    
+        [HttpPost]
+        [ActionName("Search")]
+        public async Task<IActionResult> SearchBook(FilterModel reqModel)
+        {
+            var list = await _iBookService.GetBookByFilter(reqModel.Filter);
+            return Json(new { result = list });
+        }
+    }
+
+    public class FilterModel
+    {
+        public string Filter { get; set; }
     }
 }

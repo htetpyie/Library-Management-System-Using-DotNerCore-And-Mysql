@@ -20,7 +20,8 @@ namespace LMS.Service.Repository
         // Retrieve All
         public async Task<List<BookDM>> GetAllBooks(int pageNo, int rowCount)
         {
-            int skip = (pageNo - 1) * rowCount;
+            //int skip = (pageNo - 1) * rowCount;
+            int skip = pageNo; // as pageNo = dataTableModel.Skip in service
             var list = await _context.Book.AsNoTracking()
                                         .Where(b => b.IsDelete == false)
                                         .Skip(skip)
@@ -112,6 +113,27 @@ namespace LMS.Service.Repository
             _context.Update(bookModel);
             int result = await _context.SaveChangesAsync();
             return result > 0;
+        }
+
+        // Get Book by Filter
+        public async Task<List<BookDM>> GetBookByFilter(string filter)
+        {
+            string filterData = filter?.ToLower();
+            IQueryable<BookDM> query = _context.Book.Where(b => b.IsDelete == false).AsNoTracking();
+
+            List<BookDM> bookList = new List<BookDM>();
+            if(filterData != null && !string.IsNullOrEmpty(filterData))
+            {
+                query = query.Where(
+                            q =>
+                            q.Id.ToString().Contains(filterData) ||
+                            q.Title.ToLower().Contains(filterData) ||
+                            q.ISBN.ToLower().Contains(filterData)
+                        );
+            }
+            bookList = await query.ToListAsync();
+            return bookList;
+
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@{ 
-    ViewData["Title"] = "Book";
+    ViewData["Title"] = "Loan";
 }
 <section class="content-header">
     <div class="container-fluid">
@@ -22,18 +22,18 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <a asp-action="CreateBook" asp-controller="Book">Create Book</a>
+                        <a asp-action="CreateLoan" asp-controller="Book">Create Loan</a>
                     </div>
                     <div class="card-body">
                         <table id="book-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
+                                    <th>Book Title</th>
                                     <th>Author</th>
-                                    <th>Publisher</th>
-                                    <th>PublishedDate</th>
-                                    <th>ISBN</th>
+                                    <th>Member Name</th>
+                                    <th>Loan Date</th>
+                                    <th>Due Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-                        
+
 
         </div>
     </div>
@@ -52,10 +52,9 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            var messageTitle =  "Book" ;
+            var messageTitle =  "Loan" ;
             showModal("#modal", messageTitle, "@TempData["Message"]");
     })
 
     </script>
-    <script src="~/js/Book/book.js"></script>
 }

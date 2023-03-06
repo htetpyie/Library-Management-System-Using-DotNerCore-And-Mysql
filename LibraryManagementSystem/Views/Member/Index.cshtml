@@ -1,39 +1,40 @@
-﻿@{ 
-    ViewData["Title"] = "Book";
+﻿@{
+    ViewData["Title"] = "Create Member";
 }
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h2 class="jaoas-label">Book</h2>
+                <h2 class="jaoas-label">Member</h2>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item sub-label">Book</li>
+                    <li class="breadcrumb-item sub-label">Member</li>
                 </ol>
             </div>
 
         </div>
     </div>
 </section>
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <a asp-action="CreateBook" asp-controller="Book">Create Book</a>
+                        <a asp-action="CreateMember">Create Member</a>
                     </div>
                     <div class="card-body">
-                        <table id="book-table">
+                        <table id="member-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Publisher</th>
-                                    <th>PublishedDate</th>
-                                    <th>ISBN</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,7 +44,6 @@
                     </div>
                 </div>
             </div>
-                        
 
         </div>
     </div>
@@ -51,11 +51,9 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            var messageTitle =  "Book" ;
-            showModal("#modal", messageTitle, "@TempData["Message"]");
+    $(document).ready(function () {
+        showModal("#model", "Member",'@TempData["Message"]');
     })
-
     </script>
-    <script src="~/js/Book/book.js"></script>
+    <script src="~/js/Member/member.js"></script>
 }

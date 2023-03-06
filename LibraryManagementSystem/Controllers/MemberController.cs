@@ -26,6 +26,51 @@ namespace LMS.Web.Controllers
             return View();
         }
 
+        // Member Data Table
+        public async Task<IActionResult> MemberDataTable()
+        {
+            try
+            {
+                var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+
+                // Paging Length 10,20  
+                var length = Request.Form["length"].FirstOrDefault();
+
+                // Skiping number of Rows count  
+                var start = Request.Form["start"].FirstOrDefault();
+
+                // Search Value from (Search box)  
+                var searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+                // Sort Column Name  
+                //var sortColumn = Request.Form["order[0][column]"].FirstOrDefault();
+                var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+
+                // Sort Column Direction ( asc ,desc)  
+                var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+
+                //Paging Size (10,20,50,100)  
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+                int recordsTotal = 0;
+
+                // Getting all User data  
+                var roleList = await _iMemberService.GetAllMember(sortColumn, sortColumnDirection, searchValue, skip, pageSize);
+
+                //total number of rows count   
+                recordsTotal = roleList.Count();
+                //Paging   
+                var data = roleList.Skip(skip).Take(pageSize).ToList();
+                //Returning Json Data  
+                return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         // Create Member
         public IActionResult CreateMember()
         {
@@ -34,7 +79,7 @@ namespace LMS.Web.Controllers
 
         // Save Member
         [HttpPost]
-        public async Task<IActionResult> SaveMember(ViewMemberVM memberVM)
+        public async Task<IActionResult> SaveMember(MemberVM memberVM)
         {
             int loginUserId = 1;
 
@@ -55,9 +100,9 @@ namespace LMS.Web.Controllers
         }
 
         // View Member
-        public async Task<IActionResult> ViewMember(int memberId)
+        public async Task<IActionResult> ViewMember(int Id)
         {
-            ViewMemberVM memberVm = await _iMemberService.GetMemberById(memberId);
+            MemberVM memberVm = await _iMemberService.GetMemberById(Id);
             if (memberVm == null)
             {
                 TempData[Message] = _message.MemberNotFound;
@@ -67,10 +112,10 @@ namespace LMS.Web.Controllers
         }
 
         // Edit Member
-        public async Task<IActionResult> EditMember(int memberId)
+        public async Task<IActionResult> EditMember(int Id)
         {
 
-            ViewMemberVM memberVm = await _iMemberService.GetMemberById(memberId);
+            MemberVM memberVm = await _iMemberService.GetMemberById(Id);
             if (memberVm == null)
             {
                 TempData[Message] = _message.MemberNotFound;
@@ -80,7 +125,7 @@ namespace LMS.Web.Controllers
         }
 
         // Update Member
-        public async Task<IActionResult> UpdateMember(ViewMemberVM memberVm)
+        public async Task<IActionResult> UpdateMember(MemberVM memberVm)
         {
             int loginUserId = 1;
             if (memberVm == null) return BadRequest();
@@ -100,10 +145,11 @@ namespace LMS.Web.Controllers
         }
 
         // Delete Member
-        public async Task<IActionResult> DeleteMember(int memberId)
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteMember(int Id)
         {
             int loginUserId = 1;
-            bool isDeleted = await _iMemberService.DeleteMember(memberId, loginUserId);
+            bool isDeleted = await _iMemberService.DeleteMember(Id, loginUserId);
             if (isDeleted)
             {
                 TempData[Message] = _message.MemberDeleteSuccess;

@@ -14,8 +14,8 @@ namespace LMS.Web.Helpers
             CreateMap<BookVM, BookDM>();
             CreateMap<BookDM,BookVM>();
             //CreateMap<List<ViewBookVM>, List<Book>>();
-            CreateMap<Member, ViewMemberVM>();
-            CreateMap<ViewMemberVM, Member>();
+            CreateMap<MemberDM, MemberVM>();
+            CreateMap<MemberVM, MemberDM>();
             //CreateMap<List<ViewMemberVM>, List<Member>>();
         }
     }

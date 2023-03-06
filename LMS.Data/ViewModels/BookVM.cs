@@ -21,6 +21,7 @@ namespace LMS.Data.ViewModels
         [Required]
         [Display(Name = "Published Date")]
         public DateTime PublishedDate { get; set; }
+        public String PublishedDateString { get; set; }
 
         [Required]
         [Display(Name ="ISBN Number")]

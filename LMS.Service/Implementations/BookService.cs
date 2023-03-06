@@ -25,8 +25,9 @@ namespace LMS.Service.Implementations {
 
         #region Bussiness Logic Layer
         // Read , Retrieve All
-        public async Task<List<BookVM>> GetAllBook(int pageNo, int rowCount) {
-            List<BookDM> bookList = await _bookRepo.GetAllBooks(pageNo, rowCount);
+        public async Task<List<BookVM>> GetAllBook(string sortColumn, string sortColumnDirection, string searchValue , int skip , int rowCount) {
+
+            List<BookDM> bookList = await _bookRepo.GetAllBooks(skip, rowCount);
 
             //List<BookVM> resultBookList = bookList.Select(item => _mapper.Map<BookVM>(item)).ToList();
             //List<BookVM> resultBookList = bookList.Select(item => item.Change()).ToList();
@@ -49,6 +50,7 @@ namespace LMS.Service.Implementations {
                     PublishedDate = item.PublishedDate,
                     Publisher = item.Publisher,
                     Title = item.Title,
+                    PublishedDateString = item.PublishedDate.ToString("dd-MMMM-yyyy"),
                 };
                 resultBookList.Add(bookVM);
             }
@@ -87,6 +89,14 @@ namespace LMS.Service.Implementations {
         public async Task<bool> DeleteBook(int bookId, int loginUserId) {
             bool isDeleted = await _bookRepo.DeleteBook(bookId, loginUserId);
             return isDeleted;
+        }
+       
+        // Search Book 
+        public async Task<List<BookVM>> GetBookByFilter(string filter)
+        {
+            List<BookDM> bookList = await _bookRepo.GetBookByFilter(filter);
+            List<BookVM> bookVMList =  bookList.Select(item => _mapper.Map<BookVM>(item) ).ToList();
+            return bookVMList;
         }
         #endregion
     }

@@ -12,7 +12,7 @@ namespace LMS.Data.Context
         {
         }
         public DbSet<BookDM> Book { get; set; }
-        public DbSet<Member> Member { get; set; }
-        public DbSet<Loan> Loan { get; set; }
+        public DbSet<MemberDM> Member { get; set; }
+        public DbSet<LoanDM> Loan { get; set; }
     }
 }

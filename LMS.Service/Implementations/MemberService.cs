@@ -5,6 +5,7 @@ using LMS.Service.Interfaces;
 using LMS.Service.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,41 +23,41 @@ namespace LMS.Service.Implementations
         }
 
         // Read, Retrieve All
-        public async Task<List<ViewMemberVM>> GetAllMember(int pageNo, int rowCount)
+        public async Task<List<MemberVM>> GetAllMember(string sortColumn,string sortColumnDirection,string searchValue, int skip, int rowCount)
         {
-            var memberList = await _memberRepo.GetAllMembers(pageNo, rowCount);
-            List<ViewMemberVM> resultList = _mapper.Map<List<ViewMemberVM>>(memberList);
+            var memberList = await _memberRepo.GetAllMembers(skip, rowCount);
+            List<MemberVM> resultList = memberList.Select(m => _mapper.Map<MemberVM>(m)).ToList();
             return resultList;
         }
 
         // Check Duplicate
-        public async Task<bool> IsDuplicate(ViewMemberVM memberVM)
+        public async Task<bool> IsDuplicate(MemberVM memberVM)
         {
-            Member member = _mapper.Map<Member>(memberVM);
+            MemberDM member = _mapper.Map<MemberDM>(memberVM);
             bool isDuplicate = await _memberRepo.IsDuplicate(member);
             return isDuplicate;
         }
 
         // Save Member
-        public async Task<bool> SaveMember(ViewMemberVM memberVM, int loginUserId)
+        public async Task<bool> SaveMember(MemberVM memberVM, int loginUserId)
         {
-            Member member = _mapper.Map<Member>(memberVM);
+            MemberDM member = _mapper.Map<MemberDM>(memberVM);
             bool isSaved = await _memberRepo.SaveMember(member, loginUserId);
             return isSaved;
         }
 
         // Get By Id
-        public async Task<ViewMemberVM> GetMemberById(int memberId)
+        public async Task<MemberVM> GetMemberById(int memberId)
         {
             var member = await _memberRepo.GetMemberById(memberId);
-            ViewMemberVM memberVm = _mapper.Map<ViewMemberVM>(member);
+            MemberVM memberVm = _mapper.Map<MemberVM>(member);
             return memberVm;
         }
 
         // Update Member
-        public async Task<bool> UpdateMember(ViewMemberVM memberVm, int loginUserId)
+        public async Task<bool> UpdateMember(MemberVM memberVm, int loginUserId)
         {
-            Member member = _mapper.Map<Member>(memberVm);
+            MemberDM member = _mapper.Map<MemberDM>(memberVm);
             bool isUpdated = await _memberRepo.UpdateMember(member, loginUserId);
             return isUpdated;
         }

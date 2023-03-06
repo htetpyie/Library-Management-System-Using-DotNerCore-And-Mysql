@@ -17,10 +17,11 @@ namespace LMS.Service.Repository
             _context = context;
         }
 
-        public async Task<List<Member>> GetAllMembers(int pageNo, int rowCount)
+        public async Task<List<MemberDM>> GetAllMembers(int pageNo, int rowCount)
         {
-            int skip = (pageNo - 1) * rowCount;
-            List<Member> list = await _context.Member
+            //int skip = (pageNo - 1) * rowCount;
+            int skip = pageNo;
+            List<MemberDM> list = await _context.Member
                                     .AsNoTracking()
                                     .Where(b => b.IsDelete == false)
                                     .Skip(skip)
@@ -29,9 +30,9 @@ namespace LMS.Service.Repository
             return list;
         }
 
-        public async Task<bool> SaveMember(Member memberData, int loginUserId)
+        public async Task<bool> SaveMember(MemberDM memberData, int loginUserId)
         {
-            Member memberModel = new Member();
+            MemberDM memberModel = new MemberDM();
 
             memberModel.CreatedBy = loginUserId;
             memberModel.CreatedDate = DateTime.Now;
@@ -46,15 +47,15 @@ namespace LMS.Service.Repository
             return result > 0;
         }
 
-        public async Task<Member> GetMemberById(int memberId)
+        public async Task<MemberDM> GetMemberById(int memberId)
         {
             var member = await _context.Member.FirstOrDefaultAsync(m => m.IsDelete == false && m.Id == memberId);
             return member;
         }
 
-        public async Task<bool> UpdateMember(Member memberData, int loginUserId)
+        public async Task<bool> UpdateMember(MemberDM memberData, int loginUserId)
         {
-            Member memberModel = await _context.Member.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == memberData.Id);
+            MemberDM memberModel = await _context.Member.FirstOrDefaultAsync(b => b.IsDelete == false && b.Id == memberData.Id);
             if (memberModel == null) return false;
 
             memberModel.UpdatedBy = loginUserId;
@@ -73,7 +74,7 @@ namespace LMS.Service.Repository
 
         public async Task<bool> DeleteMember(int memberId, int loginUserId)
         {
-            Member memberModel = await _context.Member.FirstOrDefaultAsync(m => m.IsDelete == false && m.Id == memberId);
+            MemberDM memberModel = await _context.Member.FirstOrDefaultAsync(m => m.IsDelete == false && m.Id == memberId);
             if (memberModel == null) return false;
 
             memberModel.UpdatedBy = loginUserId;
@@ -86,7 +87,7 @@ namespace LMS.Service.Repository
             return result > 0;
         }
 
-        public async Task<bool> IsDuplicate(Member member)
+        public async Task<bool> IsDuplicate(MemberDM member)
         {
             bool isDuplicate;
             if (member.Id > 0)

@@ -1,44 +1,42 @@
-﻿let deleteModal = "#deleteModal";
-let modalTitle = "Delete Book";
-$(document).ready(() => {
-    let bookTable = $('#book-table').dataTable({
+﻿$(document).ready(() => {
+    let datatable = $('#member-table').DataTable({
         destroy: true,
-        "serverSide": true,
-        sorting: false,
+        serverSide: true,
         ajax: {
-            url: "Book/BookDataTable",
-            type: 'POST',
-            datatype: "Json",
+            url: "Member/MemberDataTable",
+            method: "POST",
+            dataType: "Json",
+            sorting: false,
         },
-        "columns": [
+        columns: [
             {
-                "data": null,
-                "render": function (data, type, row, meta) {
+                data: null,
+                render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
-                }
+                },
             },
             {
-                "data": "title",
-                "name" : "Title",
+                data: 'firstName',
+                name: "FirstaName"
             },
             {
-                "data": "author",
-                "name": "Author",
+                data: 'lastName',
+                name: "lastName"
             },
             {
-                "data": "publisher",
-                "name": "publisher",
+                data: 'email',
+                name: "email"
             },
             {
-                "data": "publishedDateString",
-                "name": "publishedDate",
+                data: "phone",
+                name: "phone",
             },
             {
-                "data": "isbn",
-                "name": "isbn",
+                data: "address",
+                name: "address",
             },
             {
-                "data": null,
+                data: null,
                 render: function (data, type, full) {
                     return `<div class="dropdown">
                                  <button type="button" class="btn jaoas-view-icon" role="button" id="dropdownMenuLink"
@@ -46,14 +44,15 @@ $(document).ready(() => {
                                     <i class="fas fa-cog" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu" id="actionBtn" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/Book/EditBook/${full.id}">Edit</a>
-                                    <a class="dropdown-item" href="/Book/ViewBook/${full.id}">View</a>
+                                    <a class="dropdown-item" href="/Member/EditMember/${full.id}">Edit</a>
+                                    <a class="dropdown-item" href="/Member/ViewMember/${full.id}">View</a>
                                     <a class="dropdown-item" href="#" onclick="showDeleteModal(${full.id})">Delete</a>
                                 </div>
                             </div>`
                 },
                 className: "textcenter",
             }
+
         ]
     })
 })
