@@ -26,7 +26,11 @@ namespace LibraryManagementSystem {
         public void ConfigureServices(IServiceCollection services) {
             string mySqlConnectionStr = Configuration.GetConnectionString("DBConnection");
             //services.AddControllers().AddRazorRuntimeCompilation();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation()
+                .AddJsonOptions(jsonOptions => {
+                    jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
             //services.AddRazorPages()
             //        .AddRazorRuntimeCompilation();
 
